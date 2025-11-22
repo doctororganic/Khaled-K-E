@@ -23,7 +23,8 @@ This guide covers deploying "The Expert - English Study Companion" to GitHub Pag
    - Go to **Actions** tab in your repository
    - Watch the workflow run
    - Once complete, your site will be live at:
-     `https://doctororganic.github.io/Khaled-K-E/`
+     - `https://English.hero1.onlne` (after DNS setup)
+     - `https://doctororganic.github.io/Khaled-K-E/` (temporary, before custom domain)
 
 ### Option 2: Manual Deployment
 
@@ -37,25 +38,39 @@ npm run build
 
 ## 🌐 Custom Domain Setup
 
-### For GitHub Pages:
+### For GitHub Pages with Custom Domain: English.hero1.onlne
 
-1. **Add CNAME file:**
+✅ **Already configured!** The CNAME file and vite.config.ts are set up.
+
+**Next steps:**
+
+1. **Configure DNS** (at your domain provider - hero1.onlne):
+   - **Option A (Recommended):** Create a **CNAME record**:
+     - **Name/Host:** `English` (or `@` if it's the root domain)
+     - **Value/Target:** `doctororganic.github.io`
+     - **TTL:** 3600 (or default)
+   
+   - **Option B:** Create **A records**:
+     - `185.199.108.153`
+     - `185.199.109.153`
+     - `185.199.110.153`
+     - `185.199.111.153`
+
+2. **Enable custom domain in GitHub:**
+   - Go to repository **Settings** → **Pages**
+   - Under **Custom domain**, enter: `English.hero1.onlne`
+   - Click **Save**
+   - Wait a few minutes, then check **Enforce HTTPS** (will be available after DNS propagates)
+
+3. **Verify DNS propagation:**
    ```bash
-   echo "yourdomain.com" > public/CNAME
-   # Or create public/CNAME manually with your domain
+   # Check if DNS is working (wait 5-30 minutes after setup)
+   nslookup English.hero1.onlne
+   # Should return GitHub Pages IP addresses
    ```
 
-2. **Update DNS settings** (at your domain provider):
-   - **A Record:** `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - **OR CNAME Record:** `doctororganic.github.io`
-
-3. **Update vite.config.ts:**
-   - Change `base: '/Khaled-K-E/'` to `base: '/'` for custom domain
-
-4. **Enable custom domain in GitHub:**
-   - Go to **Settings** → **Pages**
-   - Enter your domain in **Custom domain**
-   - Check **Enforce HTTPS**
+4. **Your site will be live at:**
+   - `https://English.hero1.onlne` (after DNS propagates, usually 5-30 minutes)
 
 ### For Your Own Server:
 

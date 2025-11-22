@@ -4,10 +4,10 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
-    // For GitHub Pages, use repository name as base path
-    // Change 'Khaled-K-E' to your actual repository name if different
-    // Set VITE_BASE_PATH env variable to override, or use '/' for custom domain
-    const base = env.VITE_BASE_PATH || (mode === 'production' ? '/Khaled-K-E/' : '/');
+    // Using custom domain: English.hero1.onlne
+    // Base path is '/' for custom domain (not '/Khaled-K-E/')
+    // Set VITE_BASE_PATH env variable to override if needed
+    const base = env.VITE_BASE_PATH || '/';
     
     return {
       base,
