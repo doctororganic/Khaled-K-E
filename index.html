@@ -10,8 +10,16 @@
       body {
         font-family: 'Inter', sans-serif;
       }
-      .arabic-text {
+      .arabic-text,
+      .font-arabic {
         font-family: 'Noto Kufi Arabic', sans-serif;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
       }
       /* Custom Scrollbar for Dark Theme */
       ::-webkit-scrollbar {

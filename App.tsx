@@ -16,6 +16,10 @@ function App() {
 
   // Load voices
   useEffect(() => {
+    if (!window.speechSynthesis) {
+      return;
+    }
+    
     const loadVoices = () => {
       const voices = window.speechSynthesis.getVoices();
       // Try to find a good US English voice (Google US English, Microsoft Zira, etc.)
@@ -27,6 +31,13 @@ function App() {
     
     loadVoices();
     window.speechSynthesis.onvoiceschanged = loadVoices;
+    
+    // Cleanup: remove event listener on unmount
+    return () => {
+      if (window.speechSynthesis) {
+        window.speechSynthesis.onvoiceschanged = null;
+      }
+    };
   }, []);
 
   // derived state
@@ -51,6 +62,10 @@ function App() {
   };
 
   const speakText = (text: string) => {
+    if (!window.speechSynthesis) {
+      console.warn('Speech synthesis is not supported in this browser');
+      return;
+    }
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     if (voice) utterance.voice = voice;
