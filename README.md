@@ -36,33 +36,6 @@ View your app in AI Studio: https://ai.studio/apps/drive/1JMu1jnWH_BlIT7CaKqX4pO
    npm run preview
    ```
 
-## 📦 Deployment
-
-### GitHub Pages (Automatic)
-
-1. **Enable GitHub Pages:**
-   - Go to repository **Settings** → **Pages**
-   - Select **Source**: **GitHub Actions**
-   - Save
-
-2. **Merge to main branch:**
-   ```bash
-   git checkout main
-   git merge your-feature-branch
-   git push origin main
-   ```
-
-3. **Your site will be live at:**
-   - `https://doctororganic.github.io/Khaled-K-E/`
-
-### Custom Domain
-
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions on:
-- Setting up custom domains
-- Server deployment (Nginx/Apache)
-- Environment variables
-- Troubleshooting
-
 ## 🛠️ Development
 
 - **Framework:** React 19 + TypeScript
@@ -79,7 +52,3 @@ See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions on:
 - ✅ Mark questions as learned
 - ✅ Responsive design
 
-## 📖 Documentation
-
-- [Deployment Guide](./DEPLOYMENT.md) - Complete deployment instructions
-- [GitHub Actions Workflow](./.github/workflows/deploy.yml) - Auto-deployment configuration
