@@ -1,0 +1,46 @@
+{
+  "weeklyStructure": {
+    "days": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+    "mealTypes": ["breakfast", "lunch", "dinner", "snack"],
+    "intermittentFasting": {
+      "enabled": false,
+      "days": [],
+      "pattern": "16:8",
+      "meals": ["breakfast", "dinner", "snack"]
+    }
+  },
+  "mealDistribution": {
+    "3_meals": {
+      "meals": ["breakfast", "lunch", "dinner"],
+      "calorieDistribution": {"breakfast": 0.30, "lunch": 0.40, "dinner": 0.30}
+    },
+    "4_meals": {
+      "meals": ["breakfast", "mid_morning", "lunch", "dinner"],
+      "calorieDistribution": {"breakfast": 0.25, "mid_morning": 0.15, "lunch": 0.35, "dinner": 0.25}
+    },
+    "3_meals_1_snack": {
+      "meals": ["breakfast", "lunch", "dinner", "snack"],
+      "calorieDistribution": {"breakfast": 0.30, "lunch": 0.35, "dinner": 0.30, "snack": 0.05}
+    },
+    "3_meals_2_snacks": {
+      "meals": ["breakfast", "snack", "lunch", "snack", "dinner"],
+      "calorieDistribution": {"breakfast": 0.25, "snack1": 0.10, "lunch": 0.30, "snack2": 0.10, "dinner": 0.25}
+    },
+    "intermittent_fasting": {
+      "meals": ["breakfast", "dinner", "snack"],
+      "calorieDistribution": {"breakfast": 0.40, "dinner": 0.45, "snack": 0.15},
+      "fastingHours": 16,
+      "eatingWindow": 8
+    }
+  },
+  "displayFormat": {
+    "mealBox": {
+      "fields": ["mealName", "components", "calories", "protein_g", "carbs_g", "fats_g"],
+      "clickAction": "showPreparationSteps",
+      "alternativeMeal": "showOnClick"
+    },
+    "preparationSteps": {
+      "include": ["ingredients", "quantities", "steps", "cookingTime", "servings"]
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "calorieFormulas": {
+    "weight_loss_maintenance": {
+      "description": "20 calories per kg for BMI 18-30 (overweight, obese, normal weight)",
+      "formula": "weight_kg * 20",
+      "bmiRange": [18, 30],
+      "goals": ["losing_weight", "maintaining_weight"]
+    },
+    "underweight_maintenance": {
+      "description": "25 calories per kg for BMI 15-17 and thin individuals",
+      "formula": "weight_kg * 25",
+      "bmiRange": [15, 17],
+      "goals": ["maintaining_weight", "gaining_weight"]
+    },
+    "muscle_gain_high_metabolism": {
+      "description": "30 calories per kg for high metabolic rate or muscle mass gain",
+      "formula": "weight_kg * 30",
+      "metabolicRate": "high",
+      "goals": ["increasing_strength_muscle_mass", "gaining_weight"]
+    }
+  },
+  "proteinRequirements": {
+    "sedentary": {
+      "min": 1.0,
+      "max": 1.5,
+      "unit": "grams_per_kg"
+    },
+    "active_weightlifting": {
+      "min": 1.5,
+      "max": 1.7,
+      "unit": "grams_per_kg"
+    }
+  },
+  "macroDistribution": {
+    "low_carb": {"protein": 0.30, "carbs": 0.20, "fats": 0.50},
+    "keto": {"protein": 0.25, "carbs": 0.05, "fats": 0.70},
+    "balanced": {"protein": 0.30, "carbs": 0.40, "fats": 0.30},
+    "high_carb": {"protein": 0.20, "carbs": 0.60, "fats": 0.20},
+    "mediterranean": {"protein": 0.25, "carbs": 0.45, "fats": 0.30},
+    "dash": {"protein": 0.18, "carbs": 0.55, "fats": 0.27},
+    "vegan": {"protein": 0.15, "carbs": 0.60, "fats": 0.25},
+    "anti_inflammatory": {"protein": 0.25, "carbs": 0.40, "fats": 0.35}
+  }
+}

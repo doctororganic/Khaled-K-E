@@ -1,0 +1,57 @@
+{
+  "medications": [
+    {
+      "id": "metformin",
+      "name": "Metformin",
+      "type": "diabetes",
+      "foodInteractions": {
+        "avoid": ["alcohol", "high_sugar_foods"],
+        "takeWith": "food",
+        "timing": "with meals"
+      },
+      "nutritionalConsiderations": [
+        "May cause B12 deficiency - include B12 rich foods",
+        "Take with food to reduce stomach upset",
+        "Avoid alcohol",
+        "Stay hydrated"
+      ],
+      "supplements": [
+        {"name": "Vitamin B12", "dose": "500-1000mcg daily", "reason": "Prevent deficiency"}
+      ]
+    },
+    {
+      "id": "warfarin",
+      "name": "Warfarin",
+      "type": "blood_thinner",
+      "foodInteractions": {
+        "avoid": ["vitamin_k_rich_foods_excessive"],
+        "maintainConsistent": ["vitamin_k_intake"],
+        "timing": "same time daily"
+      },
+      "nutritionalConsiderations": [
+        "Maintain consistent vitamin K intake",
+        "Don't suddenly increase/decrease leafy greens",
+        "Limit alcohol",
+        "Avoid cranberry juice"
+      ],
+      "supplements": []
+    },
+    {
+      "id": "ace_inhibitor",
+      "name": "ACE Inhibitors",
+      "type": "hypertension",
+      "foodInteractions": {
+        "avoid": ["potassium_supplements", "salt_substitutes"],
+        "limit": ["potassium_rich_foods_excessive"],
+        "timing": "with or without food"
+      },
+      "nutritionalConsiderations": [
+        "May increase potassium levels",
+        "Avoid potassium supplements",
+        "Limit salt substitutes",
+        "Monitor potassium intake"
+      ],
+      "supplements": []
+    }
+  ]
+}

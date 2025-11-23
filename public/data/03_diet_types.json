@@ -1,0 +1,68 @@
+{
+  "dietTypes": [
+    {
+      "id": "low_carb",
+      "name": "Low Carb Diet",
+      "description": "Reduces carbohydrate intake, focuses on protein and healthy fats",
+      "allowedFoods": ["lean_meat", "fish", "eggs", "vegetables", "nuts", "seeds", "dairy"],
+      "restrictedFoods": ["grains", "sugar", "starchy_vegetables", "fruits_high_sugar"],
+      "benefits": ["weight_loss", "blood_sugar_control", "reduced_cravings"]
+    },
+    {
+      "id": "keto",
+      "name": "Ketogenic Diet",
+      "description": "Very low carb, high fat diet to induce ketosis",
+      "allowedFoods": ["meat", "fish", "eggs", "low_carb_vegetables", "nuts", "oils", "avocado"],
+      "restrictedFoods": ["grains", "sugar", "most_fruits", "legumes", "root_vegetables"],
+      "benefits": ["rapid_weight_loss", "mental_clarity", "energy_stability"]
+    },
+    {
+      "id": "balanced",
+      "name": "Balanced Diet",
+      "description": "Moderate intake of all macronutrients",
+      "allowedFoods": ["all_food_groups"],
+      "restrictedFoods": ["processed_foods", "excessive_sugar"],
+      "benefits": ["sustainable", "nutrient_complete", "flexible"]
+    },
+    {
+      "id": "high_carb",
+      "name": "High Carb Diet",
+      "description": "Higher carbohydrate intake for active individuals",
+      "allowedFoods": ["whole_grains", "fruits", "vegetables", "legumes", "lean_protein"],
+      "restrictedFoods": ["refined_sugar", "processed_foods"],
+      "benefits": ["energy_for_athletes", "muscle_glycogen", "endurance"]
+    },
+    {
+      "id": "mediterranean",
+      "name": "Mediterranean Diet",
+      "description": "Based on traditional Mediterranean cuisine",
+      "allowedFoods": ["olive_oil", "fish", "vegetables", "whole_grains", "nuts", "fruits"],
+      "restrictedFoods": ["red_meat", "processed_foods", "refined_sugar"],
+      "benefits": ["heart_health", "longevity", "brain_health"]
+    },
+    {
+      "id": "dash",
+      "name": "DASH Diet",
+      "description": "Dietary Approaches to Stop Hypertension",
+      "allowedFoods": ["fruits", "vegetables", "whole_grains", "lean_protein", "low_fat_dairy"],
+      "restrictedFoods": ["sodium", "saturated_fats", "sugar"],
+      "benefits": ["blood_pressure_control", "heart_health", "weight_management"]
+    },
+    {
+      "id": "vegan",
+      "name": "Vegan Diet",
+      "description": "Plant-based diet excluding all animal products",
+      "allowedFoods": ["fruits", "vegetables", "legumes", "grains", "nuts", "seeds"],
+      "restrictedFoods": ["meat", "dairy", "eggs", "honey", "animal_products"],
+      "benefits": ["environmental", "ethical", "heart_health"]
+    },
+    {
+      "id": "anti_inflammatory",
+      "name": "Anti-Inflammatory Diet",
+      "description": "Focuses on foods that reduce inflammation",
+      "allowedFoods": ["fatty_fish", "berries", "leafy_greens", "nuts", "olive_oil", "turmeric"],
+      "restrictedFoods": ["processed_foods", "sugar", "trans_fats", "refined_carbs"],
+      "benefits": ["reduced_inflammation", "joint_health", "immune_support"]
+    }
+  ]
+}

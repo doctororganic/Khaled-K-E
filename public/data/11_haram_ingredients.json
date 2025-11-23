@@ -1,0 +1,47 @@
+{
+  "haramIngredients": [
+    {
+      "id": "pork_lard",
+      "arabic": "لحم الخنزير / شحم الخنزير",
+      "english": "Pork/Lard",
+      "halalAlternatives": [
+        {"arabic": "دهن البقر (حلال)", "english": "Beef fat (Halal)"},
+        {"arabic": "زيت نباتي", "english": "Vegetable oil"}
+      ]
+    },
+    {
+      "id": "gelatin_pork",
+      "arabic": "جيلاتين (خنزير)",
+      "english": "Gelatin (Pork)",
+      "halalAlternatives": [
+        {"arabic": "جيلاتين السمك", "english": "Fish gelatin"},
+        {"arabic": "أجار أجار", "english": "Agar-agar"}
+      ]
+    },
+    {
+      "id": "alcohol",
+      "arabic": "الكحول",
+      "english": "Alcohol",
+      "halalAlternatives": [
+        {"arabic": "مستخلصات خالية من الكحول", "english": "Alcohol-free extracts"},
+        {"arabic": "مسحوق الفانيليا", "english": "Vanilline powder"}
+      ],
+      "note": "Replace vanilla extract with vanilline powder"
+    },
+    {
+      "id": "wine_vinegar",
+      "arabic": "خل النبيذ",
+      "english": "Wine Vinegar",
+      "halalAlternatives": [
+        {"arabic": "خل التفاح", "english": "Apple cider vinegar"},
+        {"arabic": "خل الأرز", "english": "Rice vinegar"}
+      ]
+    }
+  ],
+  "replacementRules": {
+    "vanilla_extract": "vanilline_powder",
+    "gelatin": "fish_gelatin_or_agar_agar",
+    "lard": "halal_beef_fat_or_vegetable_oil",
+    "wine_vinegar": "apple_cider_vinegar"
+  }
+}

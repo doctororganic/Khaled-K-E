@@ -1,0 +1,28 @@
+{
+  "clientFields": {
+    "personal": ["name", "age", "weight", "height", "gender"],
+    "activity": ["activityLevel", "metabolicRate", "workoutFrequency"],
+    "goals": ["systemGoal", "workoutGoal"],
+    "restrictions": ["dislikedFoods", "allergies", "diseases", "medications"],
+    "preferences": ["preferredCuisine", "mealFrequency", "workoutLocation"]
+  },
+  "activityLevels": ["sedentary", "lightly_active", "moderately_active", "very_active", "extremely_active"],
+  "metabolicRates": ["high", "medium", "low"],
+  "systemGoals": [
+    "increasing_strength_muscle_mass",
+    "gaining_weight",
+    "losing_weight",
+    "maintaining_weight",
+    "reshaping"
+  ],
+  "workoutGoals": [
+    "muscle_gain",
+    "weight_loss",
+    "endurance",
+    "flexibility",
+    "strength",
+    "general_fitness"
+  ],
+  "workoutLocations": ["gym", "home"],
+  "mealFrequencies": ["3_meals", "4_meals", "3_meals_1_snack", "3_meals_2_snacks", "intermittent_fasting"]
+}

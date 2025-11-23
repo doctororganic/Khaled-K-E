@@ -1,0 +1,90 @@
+{
+  "cuisines": {
+    "arabic": {
+      "name": "Arabic Cuisine",
+      "commonIngredients": ["rice", "lamb", "chicken", "chickpeas", "tahini", "olive_oil", "yogurt", "spices"],
+      "recipes": [
+        {
+          "id": "mansaf",
+          "name": "Mansaf",
+          "type": "main",
+          "baseCalories": 650,
+          "protein": 45,
+          "carbs": 55,
+          "fats": 25,
+          "ingredients": ["lamb", "rice", "yogurt", "almonds"],
+          "preparation": [
+            "Cook lamb until tender",
+            "Prepare yogurt sauce",
+            "Layer rice and meat",
+            "Garnish with almonds"
+          ],
+          "dietTypes": ["balanced", "high_carb"]
+        },
+        {
+          "id": "hummus",
+          "name": "Hummus",
+          "type": "side",
+          "baseCalories": 200,
+          "protein": 8,
+          "carbs": 20,
+          "fats": 10,
+          "ingredients": ["chickpeas", "tahini", "lemon", "garlic", "olive_oil"],
+          "preparation": [
+            "Blend chickpeas",
+            "Add tahini and lemon",
+            "Mix with garlic",
+            "Drizzle olive oil"
+          ],
+          "dietTypes": ["vegan", "balanced", "mediterranean"]
+        }
+      ]
+    },
+    "mediterranean": {
+      "name": "Mediterranean Cuisine",
+      "commonIngredients": ["olive_oil", "fish", "tomatoes", "olives", "feta", "herbs"],
+      "recipes": [
+        {
+          "id": "grilled_salmon",
+          "name": "Grilled Salmon with Vegetables",
+          "type": "main",
+          "baseCalories": 450,
+          "protein": 35,
+          "carbs": 15,
+          "fats": 28,
+          "ingredients": ["salmon", "zucchini", "bell_peppers", "olive_oil", "herbs"],
+          "preparation": [
+            "Marinate salmon",
+            "Grill salmon",
+            "Roast vegetables",
+            "Serve with herbs"
+          ],
+          "dietTypes": ["mediterranean", "low_carb", "anti_inflammatory"]
+        }
+      ]
+    },
+    "asian": {
+      "name": "Asian Cuisine",
+      "commonIngredients": ["rice", "soy_sauce", "ginger", "garlic", "vegetables", "chicken"],
+      "recipes": [
+        {
+          "id": "stir_fry",
+          "name": "Chicken Stir Fry",
+          "type": "main",
+          "baseCalories": 380,
+          "protein": 32,
+          "carbs": 40,
+          "fats": 12,
+          "ingredients": ["chicken", "broccoli", "carrots", "soy_sauce", "ginger"],
+          "preparation": [
+            "Cut chicken into strips",
+            "Stir fry vegetables",
+            "Add chicken",
+            "Season with soy sauce"
+          ],
+          "dietTypes": ["balanced", "high_carb"]
+        }
+      ]
+    }
+  }
+}
