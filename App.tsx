@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { gradesData } from './data';
 import { TabType, QuestionItem, WritingTopic } from './types';
-import { BookOpen, PenTool, Volume2, Eye, EyeOff, CheckCircle, ChevronRight, GraduationCap, AlertCircle, Languages, Globe } from 'lucide-react';
+import { BookOpen, PenTool, Volume2, Eye, EyeOff, CheckCircle, ChevronRight, GraduationCap, AlertCircle, Languages, Globe, Lock } from 'lucide-react';
 
 function App() {
   const [selectedGrade, setSelectedGrade] = useState<number>(10);
@@ -13,6 +13,23 @@ function App() {
   const [showAllTranslation, setShowAllTranslation] = useState<boolean>(false);
   const [learnedItems, setLearnedItems] = useState<Record<string, boolean>>({});
   const [voice, setVoice] = useState<SpeechSynthesisVoice | null>(null);
+  const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
+
+  // Check subscription status on mount and URL params
+  useEffect(() => {
+    // Check localStorage for subscription
+    const subscribed = localStorage.getItem('isSubscribed') === 'true';
+    setIsSubscribed(subscribed);
+
+    // Check URL parameters for subscription confirmation
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('subscribed') === 'true') {
+      localStorage.setItem('isSubscribed', 'true');
+      setIsSubscribed(true);
+      // Clean URL
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+  }, []);
 
   // Load voices
   useEffect(() => {
@@ -43,6 +60,7 @@ function App() {
   // derived state
   const currentGradeData = gradesData.find(g => g.grade === selectedGrade);
   const currentUnit = currentGradeData?.units.find(u => u.unitNumber === selectedUnitNumber);
+  const isLocked = selectedUnitNumber >= 4 && !isSubscribed;
 
   useEffect(() => {
     // Reset unit to 1 when grade changes
@@ -206,7 +224,10 @@ function App() {
 
             {selectedTab === TabType.SET_BOOK && (
               <div className="grid gap-6">
-                {currentUnit?.questions.map((q) => {
+                {isLocked ? (
+                  <SubscriptionLock onUnlock={() => setIsSubscribed(true)} />
+                ) : (
+                  currentUnit?.questions.map((q) => {
                   const isLearned = learnedItems[q.id];
                   const isRevealed = revealedAnswers[q.id];
                   const isTranslated = showAllTranslation || revealedTranslations[q.id];
@@ -316,13 +337,17 @@ function App() {
                       <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-500 opacity-50" style={{ width: isRevealed ? '100%' : '0%' }} />
                     </div>
                   );
-                })}
+                }))}
               </div>
             )}
 
             {selectedTab === TabType.WRITING && (
               <div className="grid grid-cols-1 gap-6">
-                 {currentUnit?.writingTopics.map((topic) => {
+                {isLocked ? (
+                  <SubscriptionLock onUnlock={() => setIsSubscribed(true)} />
+                ) : (
+                  currentUnit?.writingTopics.map((topic) => {
+
                    const isTranslated = showAllTranslation || revealedTranslations[topic.id];
                    
                    return (
@@ -425,7 +450,8 @@ function App() {
                      </div>
                    </div>
                  );
-                })}
+                  })
+                )}
               </div>
             )}
           </div>
@@ -434,5 +460,141 @@ function App() {
     </div>
   );
 }
+
+// Subscription Lock Component
+const SubscriptionLock: React.FC<{ onUnlock: () => void }> = ({ onUnlock }) => {
+  const subscriptionFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScdZUjA4nsWqdFKXLDLi15EF7oLeTtpqbxQl7FDqAQZ81agSQ/viewform?usp=header';
+  const [subscriptionStarted, setSubscriptionStarted] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    // Check if user has started subscription process
+    const started = localStorage.getItem('subscriptionStarted') === 'true';
+    setSubscriptionStarted(started);
+  }, []);
+
+  const handleSubscribe = () => {
+    // Mark that user has started subscription process
+    localStorage.setItem('subscriptionStarted', 'true');
+    setSubscriptionStarted(true);
+    // Open form in new tab
+    window.open(subscriptionFormUrl, '_blank');
+  };
+
+  const handleUnlock = () => {
+    // User confirms they've completed the form
+    localStorage.setItem('isSubscribed', 'true');
+    // Call parent callback to update state
+    onUnlock();
+  };
+
+  return (
+    <div className="bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 rounded-2xl border-2 border-purple-500/30 p-8 md:p-12 shadow-2xl">
+      <div className="flex flex-col items-center justify-center text-center space-y-6">
+        {/* Lock Icon */}
+        <div className="p-4 bg-purple-500/20 rounded-full border-2 border-purple-500/50">
+          <Lock className="w-12 h-12 text-purple-400" />
+        </div>
+
+        {/* Title */}
+        <div className="space-y-2">
+          <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+            Subscribe to Get Full Content
+          </h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-emerald-400 font-arabic" dir="rtl">
+            اشترك للحصول على المحتوى الكامل
+          </h2>
+        </div>
+
+        {/* Benefits */}
+        <div className="w-full max-w-2xl space-y-4">
+          {/* Benefit 1 */}
+          <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-3">
+              <div className="flex-1">
+                <p className="text-slate-200 text-lg font-semibold">
+                  Get all questions with answers
+                </p>
+                <p className="text-emerald-400/80 font-arabic text-lg mt-1" dir="rtl">
+                  احصل على جميع الأسئلة مع الإجابات
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Benefit 2 */}
+          <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-3">
+              <div className="flex-1">
+                <p className="text-slate-200 text-lg font-semibold">
+                  Take all services and immediate translation with reading (no need to open extra sites to listen or translate)
+                </p>
+                <p className="text-emerald-400/80 font-arabic text-lg mt-1" dir="rtl">
+                  احصل على جميع الخدمات والترجمة الفورية مع القراءة (لا حاجة لفتح مواقع إضافية للاستماع أو الترجمة)
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Benefit 3 */}
+          <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-3">
+              <div className="flex-1">
+                <p className="text-slate-200 text-lg font-semibold">
+                  Get full content (no need extra notes or books or pdf)
+                </p>
+                <p className="text-emerald-400/80 font-arabic text-lg mt-1" dir="rtl">
+                  احصل على المحتوى الكامل (لا حاجة لملاحظات أو كتب أو ملفات PDF إضافية)
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Benefit 4 */}
+          <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-3">
+              <div className="flex-1">
+                <p className="text-slate-200 text-lg font-semibold">
+                  Save your time, money, and effort.
+                </p>
+                <p className="text-emerald-400/80 font-arabic text-lg mt-1" dir="rtl">
+                  وفر وقتك وأموالك وجهدك
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Subscribe Button */}
+        <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+          <button
+            onClick={handleSubscribe}
+            className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg shadow-purple-500/50 hover:shadow-purple-500/70 transform hover:scale-105"
+          >
+            Subscribe Now / اشترك الآن
+          </button>
+          
+          {subscriptionStarted && (
+            <button
+              onClick={handleUnlock}
+              className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-lg rounded-xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 shadow-lg shadow-emerald-500/50 hover:shadow-emerald-500/70 transform hover:scale-105"
+            >
+              I Completed the Form / أكملت النموذج
+            </button>
+          )}
+        </div>
+
+        {/* Note */}
+        <div className="space-y-2">
+          <p className="text-slate-400 text-sm">
+            After completing the form, return to this page and click "I Completed the Form" to access all content
+          </p>
+          <p className="text-emerald-400/60 font-arabic text-sm" dir="rtl">
+            بعد إكمال النموذج، ارجع إلى هذه الصفحة واضغط على "أكملت النموذج" للوصول إلى جميع المحتويات
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default App;
