@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     // GitHub Pages base path - update 'Khaled-K-E' to your repository name
-    const base = process.env.NODE_ENV === 'production' ? '/Khaled-K-E/' : '/';
+    const base = mode === 'production' ? '/Khaled-K-E/' : '/';
     
     return {
       base,
